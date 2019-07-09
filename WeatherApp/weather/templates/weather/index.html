@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Погодное приложение</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE1vv9ERnql3UvoZk9yJKuHDe6Gqm0deNE7UOa4OXJ2OdLzlQH">
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal">FCatherine</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="#">Главная</a>
+    <a class="p-2 text-dark" href="#">Информация</a>
+  </nav>
+  <a class="btn btn-outline-primary" href="#">Документация</a>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-5 offset-1">
+      <h1>Погода в вашем городе</h1>
+<form action="" method="post">
+  {% csrf_token %}
+  <label for="city">Город</label>
+  {{ form.name }}
+  <input type="submit" name="send" value="Узнать" class="mt-2 btn btn-danger">
+</form>
+      </div>
+      <section class="section">
+       <div class="container">
+           <div class="columns">
+               <div class="column is-offset-4 is-4">
+                   <div class="box">
+                       <article class="media">
+                           <div class="media-left">
+        <h1>Информация</h1>
+       {% for info in all_info %}
+        <div class="alert alert-light">
+          <b>Город:</b> {{ info.city }}</br>
+          <b>Температура:</b> {{ info.temp }}<sup>o</sup>
+          <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Image">
+        </div>
+        </div>
+      </div>
+{% endfor %}
+   </div>
+   </div>
+  </div>
+   </article>
+   </section>
+</body>
+</html>
